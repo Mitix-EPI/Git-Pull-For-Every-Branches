@@ -1,0 +1,15 @@
+#!/bin/bash
+
+START="$(git rev-parse --abbrev-ref HEAD)"
+NAME="$(git branch)"
+set -f
+array=(${NAME// /})
+
+for i in "${!array[@]}"
+do
+    BRANCH="$(echo ${array[i]} | sed 's/\*\**//g')"
+    git checkout $BRANCH
+    git pull
+done
+
+git checkout $START

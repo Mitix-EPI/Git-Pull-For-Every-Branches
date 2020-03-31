@@ -9,7 +9,7 @@ for i in "${!array[@]}"
 do
     BRANCH="$(echo ${array[i]} | sed 's/\*\**//g')"
     git checkout $BRANCH
-    git pull
+    git pull origin $BRANCH
 done
 
 git checkout $START
